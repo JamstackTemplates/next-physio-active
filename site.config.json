@@ -1,7 +1,8 @@
 {
-  "name": "Jamstacks starter",
-  "description": "A neutral Next.js foundation for Jamstacks websites.",
-  "domain": "",
+  "name": "Momentum Physio",
+  "description": "Momentum Physio in Milton, Brisbane: sports injury, back and neck pain, post-surgery rehab and running physio, with private health rebates claimed on the spot.",
+  "domain": "next-physio-active.jamstacks.net",
+  "timeZone": "Australia/Brisbane",
   "jamstacks": {
     "siteId": "",
     "cdnUrl": "https://cdn.jamstacks.net"

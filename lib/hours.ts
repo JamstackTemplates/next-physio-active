@@ -1,4 +1,4 @@
-/** Optional weekly opening-hours model. Time zone stays in site.config.json. */
+/** Weekly opening-hours model. Time zone stays in site.config.json. */
 export const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as const;
 export type Day = typeof DAYS[number];
 export interface OpeningHours {
@@ -23,6 +23,18 @@ export function validateHours(hours: readonly OpeningHours[]): void {
   }
   if (hours.length !== 7) throw new Error('hours: expected seven weekdays');
 }
+
+/** Current local weekday in the configured IANA time zone (browser-only usage for highlighting today). */
+export function currentWeekday(timeZone: string, now = new Date()): Day | null {
+  if (!timeZone) return null;
+  try {
+    const weekday = new Intl.DateTimeFormat('en-US', { timeZone, weekday: 'long' }).format(now);
+    return DAYS.includes(weekday as Day) ? (weekday as Day) : null;
+  } catch {
+    return null;
+  }
+}
+
 /** Browser callers supply the clock; build/static views never compute current availability. */
 export function openingLabel(hours: readonly OpeningHours[], timeZone: string, now = new Date()): string {
   const fallback = 'See opening hours';

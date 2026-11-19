@@ -1,112 +1,772 @@
 @import 'tailwindcss';
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Light palette: "morning clinic" */
 :root {
-  --bg: #f7f8fa;
+  --bg: #f3faf8;
   --surface: #ffffff;
-  --text: #172033;
-  --muted: #526078;
-  --accent: #2457a7;
-  --accent-ink: #2457a7;
-  --on-accent: #ffffff;
-  --line: #c7cfdb;
-  --focus: #2457a7;
+  --track: #e3f2ef;
+  --ink: #0d2a2e;
+  --muted: #4a6568;
+  --line: #c7e0dc;
+  --primary: #0b7a75;
+  --primary-hover: #08635f;
+  --primary-ink: #0b7a75;
+  --on-primary: #ffffff;
+  --tape-teal: #2ec4b6;
+  --tape-teal-edge: #1a9e92;
+  --coral: #ff6b57;
+  --coral-edge: #d94e3b;
+  --coral-ink: #b93a28;
+  --chalk: #ffffff;
+  --track-dark: #0a3639;
+  --track-dark-surface: #114548;
+  --track-dark-line: #1f6467;
+  --track-dark-ink: #e9f6f3;
+  --track-dark-muted: #a6cbc6;
+  --focus: #0b7a75;
+  --tape-sheen: rgba(255, 255, 255, 0.14);
+  --lane-glow: none;
+  --dot-grain: rgba(13, 42, 46, 0.055);
   --map-filter: none;
   color-scheme: light;
 }
+
+/* Dark palette: "after-hours rehab gym under strip lights" */
 @media (prefers-color-scheme: dark) {
- :root:not(.light) {
-  --bg: #141923;
-  --surface: #1e2633;
-  --text: #f1f5fa;
-  --muted: #b5c2d5;
-  --accent: #2457a7;
-  --accent-ink: #a9cbff;
-  --on-accent: #ffffff;
-  --line: #61708a;
-  --focus: #a9cbff;
-  --map-filter: grayscale(.4) brightness(.8);
-  color-scheme: dark;
- }
+  :root:not(.light) {
+    --bg: #081b1e;
+    --surface: #0f2d2f;
+    --track: #0c2427;
+    --ink: #e5f4f1;
+    --muted: #9bbdb8;
+    --line: #1e4a4a;
+    --primary: #0b7a75;
+    --primary-hover: #0e8f89;
+    --primary-ink: #4be3d3;
+    --on-primary: #ffffff;
+    --tape-teal: #3dd9c9;
+    --tape-teal-edge: #1fb3a4;
+    --coral: #ff8570;
+    --coral-edge: #e3634f;
+    --coral-ink: #ff9d8b;
+    --chalk: #e5f4f1;
+    --track-dark: #051316;
+    --track-dark-surface: #0c2326;
+    --track-dark-line: #23595b;
+    --track-dark-ink: #e5f4f1;
+    --track-dark-muted: #9bbdb8;
+    --focus: #3dd9c9;
+    --tape-sheen: rgba(255, 255, 255, 0.24);
+    --lane-glow: 0 0 10px rgba(61, 217, 201, 0.28);
+    --dot-grain: rgba(229, 244, 241, 0.055);
+    --map-filter: grayscale(0.35) brightness(0.82) contrast(1.05);
+    color-scheme: dark;
+  }
 }
+
 :root.dark {
-  --bg: #141923;
-  --surface: #1e2633;
-  --text: #f1f5fa;
-  --muted: #b5c2d5;
-  --accent: #2457a7;
-  --accent-ink: #a9cbff;
-  --on-accent: #ffffff;
-  --line: #61708a;
-  --focus: #a9cbff;
-  --map-filter: grayscale(.4) brightness(.8);
+  --bg: #081b1e;
+  --surface: #0f2d2f;
+  --track: #0c2427;
+  --ink: #e5f4f1;
+  --muted: #9bbdb8;
+  --line: #1e4a4a;
+  --primary: #0b7a75;
+  --primary-hover: #0e8f89;
+  --primary-ink: #4be3d3;
+  --on-primary: #ffffff;
+  --tape-teal: #3dd9c9;
+  --tape-teal-edge: #1fb3a4;
+  --coral: #ff8570;
+  --coral-edge: #e3634f;
+  --coral-ink: #ff9d8b;
+  --chalk: #e5f4f1;
+  --track-dark: #051316;
+  --track-dark-surface: #0c2326;
+  --track-dark-line: #23595b;
+  --track-dark-ink: #e5f4f1;
+  --track-dark-muted: #9bbdb8;
+  --focus: #3dd9c9;
+  --tape-sheen: rgba(255, 255, 255, 0.24);
+  --lane-glow: 0 0 10px rgba(61, 217, 201, 0.28);
+  --dot-grain: rgba(229, 244, 241, 0.055);
+  --map-filter: grayscale(0.35) brightness(0.82) contrast(1.05);
   color-scheme: dark;
 }
 
 @theme {
   --color-*: initial;
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --radius-ui: .375rem;
+  --font-display: 'Outfit Variable', 'Outfit', sans-serif;
+  --font-sans: 'Nunito Sans Variable', 'Nunito Sans', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --radius-ui: 0.5rem;
+  --radius-tape: 9999px;
 }
+
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
-  --color-ink: var(--text);
+  --color-track: var(--track);
+  --color-ink: var(--ink);
   --color-muted: var(--muted);
-  --color-accent: var(--accent);
-  --color-accent-ink: var(--accent-ink);
-  --color-on-accent: var(--on-accent);
   --color-line: var(--line);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-ink: var(--primary-ink);
+  --color-on-primary: var(--on-primary);
+  --color-tape-teal: var(--tape-teal);
+  --color-tape-teal-edge: var(--tape-teal-edge);
+  --color-coral: var(--coral);
+  --color-coral-edge: var(--coral-edge);
+  --color-coral-ink: var(--coral-ink);
+  --color-chalk: var(--chalk);
+  --color-track-dark: var(--track-dark);
+  --color-track-dark-surface: var(--track-dark-surface);
+  --color-track-dark-line: var(--track-dark-line);
+  --color-track-dark-ink: var(--track-dark-ink);
+  --color-track-dark-muted: var(--track-dark-muted);
 }
+
 :root {
   --measure: 42rem;
   --jamstacks-font-family: var(--font-sans);
-  --jamstacks-color-text: var(--text);
+  --jamstacks-color-text: var(--ink);
   --jamstacks-color-background: var(--surface);
-  --jamstacks-color-primary: var(--accent);
+  --jamstacks-color-primary: var(--primary);
   --jamstacks-color-border: var(--line);
   --jamstacks-color-muted: var(--muted);
-  --jamstacks-color-link: var(--accent-ink);
+  --jamstacks-color-link: var(--primary-ink);
   --jamstacks-border-radius: var(--radius-ui);
   --jamstacks-control-height: 2.75rem;
   --jamstacks-spacing: 1rem;
   --jamstacks-form-max-width: 40rem;
-  --jamstacks-toggle-color: var(--text);
-  --jamstacks-toggle-dark-color: var(--text);
+  /* Theme toggle sits in the header, on the surface colour */
+  --jamstacks-toggle-color: var(--ink);
+  --jamstacks-toggle-dark-color: var(--ink);
   --jamstacks-toggle-border: var(--line);
-  --jamstacks-toggle-background: var(--surface);
-  --jamstacks-toggle-dark-background: var(--surface);
-  --jamstacks-toggle-focus-color: var(--focus);
+  --jamstacks-toggle-background: var(--track);
+  --jamstacks-toggle-dark-background: var(--track);
+  --jamstacks-toggle-focus-color: var(--tape-teal);
 }
+
 @layer base {
-  html { background: var(--bg); color: var(--text); font-family: var(--font-sans); scroll-padding-top: 1.5rem; }
-  body { margin: 0; line-height: 1.6; }
-  main { min-height: 65vh; }
-  a { text-underline-offset: .2em; }
-  a:hover { text-decoration: underline; }
-  button { cursor: pointer; }
-  :focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
-  [aria-current="page"] { text-decoration: underline; }
+  html {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    scroll-padding-top: 5.5rem;
+    accent-color: var(--primary);
+  }
+  body {
+    margin: 0;
+    line-height: 1.62;
+    overflow-x: clip;
+  }
+  main {
+    min-height: 65vh;
+    overflow-x: clip;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.08;
+  }
+  a {
+    text-underline-offset: 0.22em;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  button {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+  }
+  [aria-current='page'] {
+    text-decoration: underline;
+    text-decoration-thickness: 2.5px;
+    text-decoration-color: var(--coral);
+  }
 }
-@utility wrap { width: min(100% - 2rem, 72rem); margin-inline: auto; }
+
+@utility wrap {
+  width: min(100% - 2rem, 76rem);
+  margin-inline: auto;
+}
+
+/* Floodlit bands: the after-hours rehab gym. Re-scopes tokens so text, panels and line art recolour. */
+.floodlit {
+  --bg: var(--track-dark);
+  --surface: var(--track-dark-surface);
+  --track: color-mix(in oklab, var(--track-dark) 55%, var(--track-dark-surface));
+  --ink: var(--track-dark-ink);
+  --muted: var(--track-dark-muted);
+  --line: var(--track-dark-line);
+  --primary-ink: #4be3d3;
+  --coral-ink: #ff9d8b;
+  --chalk: var(--track-dark-ink);
+  --focus: #3dd9c9;
+  --tape-sheen: rgba(255, 255, 255, 0.22);
+  --lane-glow: 0 0 12px rgba(61, 217, 201, 0.35);
+  --dot-grain: rgba(233, 246, 243, 0.05);
+  background-color: var(--bg);
+  color: var(--ink);
+  color-scheme: dark;
+}
+
 @layer components {
-  .button { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; padding: .6rem 1.2rem; border: 1px solid var(--accent); border-radius: var(--radius-ui); background: var(--accent); color: var(--on-accent); font-weight: 600; text-decoration: none; }
-  .button:hover { text-decoration: underline; }
-  .button-quiet { background: var(--surface); color: var(--accent-ink); border-color: var(--line); }
-  .text-link { color: var(--accent-ink); text-decoration: underline; }
-  .eyebrow { font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-  .skip-link { position: absolute; left: 1rem; top: -8rem; padding: .75rem; z-index: 200; background: var(--surface); }
-  .skip-link:focus { top: 1rem; }
+  .display-xl {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(3.4rem, 10.5vw, 9.75rem);
+    line-height: 0.86;
+    letter-spacing: -0.055em;
+  }
+  .display-lg {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.6rem, 6.6vw, 5.9rem);
+    line-height: 0.9;
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.85rem;
+    padding: 0.65rem 1.35rem;
+    border: 2px solid var(--primary);
+    border-radius: var(--radius-ui);
+    background: var(--primary);
+    color: var(--on-primary);
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    transition: background-color 150ms ease, border-color 150ms ease;
+  }
+  .button:hover {
+    background: var(--primary-hover);
+    border-color: var(--primary-hover);
+    text-decoration: none;
+  }
+  .button-quiet {
+    background: var(--surface);
+    color: var(--ink);
+    border-color: var(--line);
+  }
+  .button-quiet:hover {
+    background: var(--track);
+    border-color: var(--primary);
+    color: var(--ink);
+  }
+  .button-on-dark {
+    background: var(--surface);
+    color: var(--ink);
+    border-color: var(--surface);
+  }
+  .button-on-dark:hover {
+    background: var(--track);
+    border-color: var(--track);
+    color: var(--ink);
+  }
+  .text-link {
+    color: var(--primary-ink);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+  }
+  /* Labels are written on a short piece of tape, sentence case, like marker on a strip */
+  .eyebrow {
+    position: relative;
+    display: inline-block;
+    isolation: isolate;
+    padding: 0.18rem 0.75rem 0.22rem;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: -0.005em;
+    line-height: 1.25;
+    color: #2a0c06;
+  }
+  .eyebrow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: 999px;
+    background-color: var(--coral);
+    border: 1px solid var(--coral-edge);
+    background-image:
+      linear-gradient(135deg, var(--tape-sheen) 0%, transparent 50%),
+      repeating-linear-gradient(45deg, rgba(13, 42, 46, 0.08) 0 1px, transparent 1px 5px),
+      repeating-linear-gradient(-45deg, rgba(13, 42, 46, 0.08) 0 1px, transparent 1px 5px);
+    transform: rotate(-2deg) skewX(-4deg);
+  }
+  .eyebrow-teal {
+    color: #04201f;
+  }
+  .eyebrow-teal::before {
+    background-color: var(--tape-teal);
+    border-color: var(--tape-teal-edge);
+  }
+
+  .skip-link {
+    position: fixed;
+    left: 1rem;
+    top: -8rem;
+    padding: 0.75rem 1rem;
+    z-index: 200;
+    background: var(--surface);
+    color: var(--ink);
+    border: 2px solid var(--primary);
+    border-radius: var(--radius-ui);
+    font-family: var(--font-display);
+    font-weight: 800;
+  }
+  .skip-link:focus {
+    top: 1rem;
+  }
+  .visually-hidden:where(:not(:focus-within, :active)) {
+    position: absolute !important;
+    clip-path: inset(50%) !important;
+    overflow: hidden !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  /* Rubberised gym-floor dot texture on lane bands */
+  .track-floor {
+    background-color: var(--track);
+    background-image: radial-gradient(var(--dot-grain) 1.25px, transparent 1.25px);
+    background-size: 16px 16px;
+  }
+
+  /* 4px coral & teal double track lane rule */
+  .double-lane-bottom {
+    position: relative;
+  }
+  .double-lane-bottom::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 4px;
+    background: linear-gradient(
+      to bottom,
+      var(--coral) 0 1.5px,
+      transparent 1.5px 2.5px,
+      var(--tape-teal) 2.5px 4px
+    );
+    box-shadow: var(--lane-glow);
+    pointer-events: none;
+  }
+
+  /* Dashed goniometer tick rule */
+  .goniometer-rule {
+    height: 10px;
+    background-image: repeating-linear-gradient(
+      to right,
+      var(--line) 0 1.5px,
+      transparent 1.5px 10px
+    );
+    border-bottom: 1.5px solid var(--line);
+  }
+
+  /* Kinesiology tape pill / woven surface */
+  .tape-surface {
+    position: relative;
+    background-image:
+      linear-gradient(135deg, var(--tape-sheen) 0%, transparent 45%, var(--tape-sheen) 100%),
+      repeating-linear-gradient(
+        45deg,
+        rgba(13, 42, 46, 0.065) 0 1px,
+        transparent 1px 5px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        rgba(13, 42, 46, 0.065) 0 1px,
+        transparent 1px 5px
+      );
+  }
+  .tape-coral {
+    background-color: var(--coral);
+    border: 1px solid var(--coral-edge);
+  }
+  .tape-teal {
+    background-color: var(--tape-teal);
+    border: 1px solid var(--tape-teal-edge);
+  }
+
+  /* 4-degree forward-leaning accent backdrop; children remain completely upright */
+  .skew-accent {
+    position: relative;
+    isolation: isolate;
+  }
+  .skew-accent::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: skewX(-4deg);
+    border-radius: 0.45rem;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .skew-accent-coral::before {
+    background-color: var(--coral);
+    border: 1px solid var(--coral-edge);
+    background-image:
+      linear-gradient(135deg, var(--tape-sheen) 0%, transparent 50%),
+      repeating-linear-gradient(45deg, rgba(13, 42, 46, 0.07) 0 1px, transparent 1px 5px),
+      repeating-linear-gradient(-45deg, rgba(13, 42, 46, 0.07) 0 1px, transparent 1px 5px);
+  }
+  .skew-accent-teal::before {
+    background-color: var(--tape-teal);
+    border: 1px solid var(--tape-teal-edge);
+    background-image:
+      linear-gradient(135deg, var(--tape-sheen) 0%, transparent 50%),
+      repeating-linear-gradient(45deg, rgba(13, 42, 46, 0.07) 0 1px, transparent 1px 5px),
+      repeating-linear-gradient(-45deg, rgba(13, 42, 46, 0.07) 0 1px, transparent 1px 5px);
+  }
+
+  /* Hero emphasis underline: coral kinesio tape strip under "you" */
+  .hero-tape-em {
+    font-style: normal;
+    position: relative;
+    display: inline-block;
+    z-index: 0;
+  }
+  .hero-tape-em::after {
+    content: '';
+    position: absolute;
+    left: -0.06em;
+    right: -0.08em;
+    bottom: 0.04em;
+    height: 0.28em;
+    border-radius: 999px;
+    background-color: var(--coral);
+    border: 1px solid var(--coral-edge);
+    background-image:
+      repeating-linear-gradient(45deg, rgba(13, 42, 46, 0.08) 0 1px, transparent 1px 4px),
+      repeating-linear-gradient(-45deg, rgba(13, 42, 46, 0.08) 0 1px, transparent 1px 4px);
+    transform: rotate(-2.5deg) skewX(-4deg);
+    z-index: -1;
+  }
+
+  /* Hatched Sunday dot on practitioner week strip */
+  .sunday-hatched {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent 0 2px,
+      var(--line) 2px 3.5px
+    );
+  }
 }
-.map iframe { width: 100%; min-height: 20rem; border: 0; filter: var(--map-filter); }
-.enquiry__host { display: block; }
-.enquiry__status { margin-top: 1rem; color: var(--muted); }
-.enquiry[data-state="present"] > .enquiry__status { display: none; }
+
+/* ── Display scale ─────────────────────────────────────────────── */
+/* Hero photo: theme-matched image with fades into the page background */
+.hero-photo {
+  --hero-src: var(--hero-light);
+  background-image:
+    linear-gradient(to bottom, transparent 40%, var(--bg) 97%),
+    var(--hero-src);
+  background-size: cover;
+  background-position: 80% 35%;
+  background-repeat: no-repeat;
+}
+@media (min-width: 64rem) {
+  .hero-photo {
+    background-image:
+      linear-gradient(90deg, var(--bg) 0%, var(--bg) 12%, transparent 40%),
+      linear-gradient(to bottom, transparent 72%, color-mix(in oklab, var(--bg) 55%, transparent)),
+      var(--hero-src);
+    background-position: right center;
+  }
+}
+:root.dark .hero-photo {
+  --hero-src: var(--hero-dark);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) .hero-photo {
+    --hero-src: var(--hero-dark);
+  }
+}
+
+/* Painted track numerals lying on the floor in perspective */
+.lane-numeral {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(6.5rem, 26vw, 24rem);
+  line-height: 0.75;
+  letter-spacing: -0.07em;
+  color: color-mix(in oklab, var(--track) 70%, transparent);
+  -webkit-text-stroke: 2px color-mix(in oklab, var(--line) 85%, var(--ink));
+  transform: perspective(520px) rotateX(38deg);
+  transform-origin: 50% 100%;
+}
+.floodlit .lane-numeral {
+  color: var(--chalk);
+  opacity: 0.075;
+  -webkit-text-stroke: 0;
+  text-shadow: var(--lane-glow);
+}
+
+/* Double lane lines along a section edge, full bleed */
+.lanes-top,
+.lanes-bottom {
+  position: relative;
+}
+.lanes-top::before,
+.lanes-bottom::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  height: 10px;
+  z-index: 1;
+  pointer-events: none;
+  --lane-paint: var(--line);
+  background: linear-gradient(
+    to bottom,
+    var(--lane-paint) 0 3px,
+    transparent 3px 7px,
+    var(--lane-paint) 7px 10px
+  );
+  box-shadow: var(--lane-glow);
+}
+.lanes-top::before {
+  top: 0;
+}
+.lanes-bottom::after {
+  bottom: 0;
+}
+.floodlit.lanes-top::before,
+.floodlit.lanes-bottom::after {
+  --lane-paint: color-mix(in oklab, var(--chalk) 70%, transparent);
+}
+
+/* Running-track lanes as a full-bleed surface */
+.track-lanes {
+  background-color: var(--track);
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0 calc(var(--lane, 5.5rem) - 3px),
+      color-mix(in oklab, var(--chalk) 80%, transparent) calc(var(--lane, 5.5rem) - 3px) var(--lane, 5.5rem)
+    ),
+    radial-gradient(var(--dot-grain) 1.25px, transparent 1.25px);
+  background-size: 100% var(--lane, 5.5rem), 14px 14px;
+}
+
+/* Kinesio tape seam: a wide strip pulled across a section boundary */
+.tape-seam {
+  position: relative;
+  z-index: 20;
+  height: 0;
+  pointer-events: none;
+}
+.tape-seam > span {
+  position: absolute;
+  left: -6vw;
+  width: 112vw;
+  top: 0;
+  height: var(--seam-h, clamp(2.75rem, 5.5vw, 4.75rem));
+  translate: 0 -50%;
+  rotate: var(--seam-angle, -4deg);
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: 0 10px 22px -12px rgba(5, 19, 22, 0.55);
+  display: flex;
+  align-items: center;
+  gap: 3.5rem;
+  white-space: nowrap;
+  padding-inline: 8vw;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: calc(var(--seam-h, clamp(2.75rem, 5.5vw, 4.75rem)) * 0.42);
+  letter-spacing: -0.03em;
+  color: rgba(13, 42, 46, 0.16);
+}
+.tape-seam > span::after {
+  /* stretch ripple: a faint wave running along the strip */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'%3E%3Cpath d='M0 20 Q30 12 60 20 T120 20' fill='none' stroke='white' stroke-opacity='0.35' stroke-width='1.5'/%3E%3C/svg%3E") repeat-x left center / 120px 100%;
+  pointer-events: none;
+}
+
+/* Hero: one orchestrated load moment — the tape pulls across, then sticks */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes tape-pull {
+    from {
+      clip-path: inset(0 100% 0 0 round 999px);
+    }
+    to {
+      clip-path: inset(0 0 0 0 round 999px);
+    }
+  }
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      translate: 0 1.25rem;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+  .hero-pull {
+    animation: tape-pull 900ms cubic-bezier(0.65, 0, 0.2, 1) 120ms both;
+  }
+  .hero-pull-late::after {
+    animation: tape-pull 520ms cubic-bezier(0.65, 0, 0.2, 1) 780ms both;
+  }
+  .hero-rise {
+    animation: rise-in 700ms cubic-bezier(0.22, 1, 0.36, 1) 260ms both;
+  }
+}
+
+/* Scroll-driven tape "stick down" reveal + interactive lift & needle sweep (progressive enhancement) */
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes tape-stick-in {
+      from {
+        opacity: 0.72;
+        transform: scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    .tape-stick {
+      animation: tape-stick-in auto linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 65%;
+    }
+  }
+
+  .body-map-region .tape-piece {
+    transition: transform 180ms ease, filter 180ms ease;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .body-map-region:hover .tape-piece,
+  .body-map-region:focus-visible .tape-piece,
+  .body-map-region[data-active='true'] .tape-piece {
+    transform: translateY(-2.5px) scale(1.06);
+    filter: drop-shadow(0 4px 5px rgba(13, 42, 46, 0.25));
+  }
+
+  .body-map-region .joint-arc {
+    opacity: 0;
+    transition: opacity 200ms ease, stroke-dashoffset 320ms ease;
+  }
+  .body-map-region:hover .joint-arc,
+  .body-map-region:focus-visible .joint-arc,
+  .body-map-region[data-active='true'] .joint-arc {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+
+  @keyframes goniometer-sweep {
+    from {
+      transform: rotate(-90deg);
+    }
+    to {
+      transform: rotate(var(--needle-deg, 0deg));
+    }
+  }
+  .goniometer-needle {
+    transform-origin: 48px 46px;
+    transform: rotate(var(--needle-deg, 0deg));
+    animation: goniometer-sweep 650ms cubic-bezier(0.22, 1, 0.36, 1) 1 both;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .goniometer-needle {
+    transform-origin: 48px 46px;
+    transform: rotate(var(--needle-deg, 0deg));
+  }
+  .body-map-region:hover .joint-arc,
+  .body-map-region:focus-visible .joint-arc,
+  .body-map-region[data-active='true'] .joint-arc {
+    opacity: 1;
+  }
+  *, *::before, *::after {
+    animation-name: none !important;
+    scroll-behavior: auto !important;
+  }
 }
+
+/* Body-map focus ring: teal tape outline */
+.body-map-control:focus-visible {
+  outline: 3px solid var(--tape-teal);
+  outline-offset: 3px;
+}
+
+.map iframe {
+  width: 100%;
+  min-height: 20rem;
+  border: 0;
+  border-radius: var(--radius-ui);
+  filter: var(--map-filter);
+}
+
+.enquiry__host {
+  display: block;
+}
+.enquiry__status {
+  margin-top: 1rem;
+  color: var(--muted);
+}
+.enquiry[data-state='present'] > .enquiry__status {
+  display: none;
+}
+
 @media print {
-  nav, .skip-link, .enquiry, button { display: none !important; }
-  html { background: white; color: black; }
-  a { color: inherit; }
+  nav,
+  .skip-link,
+  .enquiry,
+  button,
+  .no-print,
+  .map,
+  svg[data-art='decorative'] {
+    display: none !important;
+  }
+  html,
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .print-clean,
+  .scoreboard-print {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #000000 !important;
+  }
+  .scoreboard-print * {
+    color: #000000 !important;
+    background: transparent !important;
+    border-color: #666666 !important;
+  }
+  a {
+    color: inherit !important;
+    text-decoration: underline !important;
+  }
 }

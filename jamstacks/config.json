@@ -1,0 +1,15 @@
+{
+  "name": "Active physio clinic",
+  "description": "An energetic teal-and-coral theme for physiotherapy clinics: a taped body map that filters conditions treated by region, a team sheet of practitioners with their focus areas and clinic days, fees with private health, Medicare, DVA and WorkCover rebate guides, open-now hours, location and a Jamstacks contact component for appointment enquiries.",
+  "tech": "next",
+  "type": "physio",
+  "style": "active",
+  "internal": false,
+  "components": ["support-form"],
+  "configFile": "site.config.json",
+  "screenshots": {
+    "light": "jamstacks/home-light.jpg",
+    "dark": "jamstacks/home-dark.jpg",
+    "theme": { "strategy": "media" }
+  }
+}

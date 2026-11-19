@@ -58,6 +58,12 @@ values plus `@theme inline` mappings. Keep the hosted form's primary fill dark e
 Keyboard focus, reduced motion and print styles are included. The footer credit is yours to keep,
 reword or remove.
 
+The home hero photo comes in two versions: `public/images/hero-light.webp` and
+`public/images/hero-dark.webp`. The page shows whichever matches the visitor's theme (and their manual
+toggle), and only that file is downloaded. To replace them, keep the same file names, a wide 16:9 frame
+with the runner in the right-hand 45%, and a calm left side that fades to `#F3FAF8` (light) or `#081B1E`
+(dark) so the headline stays readable. On phones the photo is cropped to its right-hand side.
+
 For a business with visiting hours, add address/directions/hours to typed content, set the IANA `timeZone`
 in site.config.json and use optional `GoogleMap`, `TimeZoneNote` and `OpenBadge` components. GoogleMap
 accepts an address and descriptive title; map helpers need no key. `OpenBadge` accepts seven

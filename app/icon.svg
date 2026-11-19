@@ -1,1 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#2457a7"/><path d="M17 20h30v24H17zM24 14v36M40 14v36" fill="none" stroke="#fff" stroke-width="4"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#0A3639"/>
+  <!-- Bold teal M -->
+  <path d="M12 49V15h10l10 17 10-17h10v34h-9V29l-9 15h-4l-9-15v20z" fill="#2EC4B6"/>
+  <!-- Coral kinesio tape Y-strip crossing the M -->
+  <g stroke="#D94E3B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 46.5 L29.5 29.5 L34 34.5 L12.5 51.5 Q9.5 53.5 7.5 50.8 Q5.8 48.3 8 46.5 Z" fill="#FF6B57"/>
+    <path d="M29.5 29.5 L49.5 11.5 Q52 9.3 54.4 12 Q56.5 14.5 54 16.8 L34 34.5 Z" fill="#FF6B57"/>
+    <path d="M31 32 L54 27.5 Q57.2 26.8 57.8 30 Q58.3 33 55.2 33.7 L33.2 38 Z" fill="#FF6B57"/>
+  </g>
+</svg>
